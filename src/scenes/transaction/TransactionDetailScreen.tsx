@@ -5,16 +5,19 @@ import colors from '../../styles/colors';
 
 import Screen from '../../components/AppScreen';
 import AppText from '../../components/AppText';
+import { useRoute } from '@react-navigation/native';
 
 export const TransactionDetailsScreen = () => {
-  // const userContext = useContext(AuthContext);
-
+  const route = useRoute<any>();
   return (
     <View style={styles.headerContainer}>
       <Screen style={styles.screen}>
         <View
           style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <AppText>Transaction details screen</AppText>
+          <AppText>Transaction screen</AppText>
+          <AppText style={{ paddingTop: 30 }}>
+            Transaction ID is {route.params?.transactionId}
+          </AppText>
         </View>
       </Screen>
     </View>

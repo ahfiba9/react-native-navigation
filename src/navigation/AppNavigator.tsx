@@ -9,6 +9,8 @@ import { ScanNavigator } from './ScanNavigator';
 import { ScanButton } from './ScanButton';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TransactionDetailsScreen } from '../scenes/transaction/TransactionDetailScreen';
+import { NotificationScreen } from '../scenes/notification/NotificationScreen';
+import { Platform } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -17,7 +19,7 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarStyle: { height: 60 },
+        tabBarStyle: { height: Platform.OS === 'ios' ? 80 : 60 },
         tabBarLabelStyle: { fontSize: 12, paddingBottom: 10 },
       }}>
       <Tab.Screen
@@ -78,10 +80,8 @@ const Tabs = () => {
 // scenes
 const StackRoutes = {
   Home: Tabs,
-  TransactionDetailsScreen,
-  // ProfileScreen,
-  // BuyScreen,
-  // TransactionScreen,
+  Transaction: TransactionDetailsScreen,
+  Notification: NotificationScreen,
 };
 
 export const AppNavigator = () => {
@@ -96,6 +96,7 @@ export const AppNavigator = () => {
             component={Screen as any}
             options={{
               headerShown: name !== 'Home',
+              headerLeftLabelVisible: false,
               headerTitle: () => null,
             }}
           />

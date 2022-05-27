@@ -5,15 +5,22 @@ import colors from '../../styles/colors';
 
 import Screen from '../../components/AppScreen';
 import AppText from '../../components/AppText';
+import { useNavigation } from '@react-navigation/native';
 
 export const ProfileScreen = () => {
+  const navigation = useNavigation<any>();
+  const navigateToNotification = () => {
+    navigation.navigate('Notification');
+  };
   return (
     <View style={styles.headerContainer}>
       <Screen style={styles.screen}>
         <View
           style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <AppText>Profile screen</AppText>
-          <AppText style={{ color: colors.primary, paddingTop: 10 }}>
+          <AppText
+            style={{ color: colors.primary, paddingTop: 10 }}
+            onPress={navigateToNotification}>
             Go to notifications
           </AppText>
         </View>

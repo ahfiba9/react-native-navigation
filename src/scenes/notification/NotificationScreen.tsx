@@ -8,7 +8,7 @@ import { AppContext, TransactionsRawDataDetails } from '../../App';
 import AppText from '../../components/AppText';
 import { useNavigation } from '@react-navigation/native';
 
-export const TransactionScreen = () => {
+export const NotificationScreen = () => {
   const appContext = useContext(AppContext);
   const navigation = useNavigation<any>();
 
@@ -18,17 +18,20 @@ export const TransactionScreen = () => {
     });
   };
 
-  const renderTransactions = ({
-    item: { id },
+  const renderNotifications = ({
+    item: { id, notification_read },
   }: {
     item: TransactionsRawDataDetails;
   }) => {
+    if (notification_read) {
+      return null;
+    }
+
     return (
       <AppText
         style={{ color: colors.primary, paddingTop: 10 }}
         onPress={() => navigateToTransaction(id)}>
-        {' '}
-        Transaction {id}{' '}
+        Unread notification - Transaction ID {id}
       </AppText>
     );
   };
@@ -43,13 +46,12 @@ export const TransactionScreen = () => {
             justifyContent: 'center',
             paddingTop: Dimensions.get('window').height / 3,
           }}>
-          <AppText> Transaction screen </AppText>
+          <AppText> Notifications screen </AppText>
           <FlatList
             data={appContext?.transactions?.transactions}
             keyExtractor={index => index.id}
-            renderItem={renderTransactions}
+            renderItem={renderNotifications}
           />
-          {/*</View>*/}
         </View>
       </Screen>
     </View>
