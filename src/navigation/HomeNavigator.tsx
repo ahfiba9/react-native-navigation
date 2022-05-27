@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import colors from '../styles/colors';
-import { HomeScreen } from '../scenes/homeScreen/HomeScreen';
+import { HomeScreen } from '../scenes/home/HomeScreen';
 
 const Stack = createStackNavigator();
 

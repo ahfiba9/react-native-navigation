@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TransactionScreen } from '../scenes/transactionScreen/TransactionScreen';
+import { TransactionScreen } from '../scenes/transaction/TransactionScreen';
 
 const Stack = createStackNavigator();
 

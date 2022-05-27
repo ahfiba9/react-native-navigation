@@ -1,20 +1,22 @@
-import React, { useContext, useState } from 'react';
-import { StyleSheet, View, FlatList, Text } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import colors from '../../styles/colors';
 
 import Screen from '../../components/AppScreen';
 import AppText from '../../components/AppText';
 
-export const BuyScreen = () => {
-  // const userContext = useContext(AuthContext);
+export const HomeScreen = () => {
 
   return (
     <View style={styles.headerContainer}>
       <Screen style={styles.screen}>
         <View
           style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <AppText numberOfLines={0}>Buy Screen</AppText>
+          <AppText>Home screen</AppText>
+          <AppText style={{ color: colors.primary, paddingTop: 10 }}>
+            Go to notifications
+          </AppText>
         </View>
       </Screen>
     </View>
@@ -24,6 +26,7 @@ export const BuyScreen = () => {
 const styles = StyleSheet.create({
   screen: {
     backgroundColor: colors.light,
+    paddingTop: 0,
   },
   container: {
     marginVertical: 20,

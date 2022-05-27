@@ -5,15 +5,15 @@ import { HomeNavigator } from './HomeNavigator';
 import { BuyNavigator } from './BuyNavigator';
 import { TransactionsNavigator } from './TransactionNavigator';
 import { ProfileNavigator } from './ProfileNavigator';
-import { HomeScreen } from '../scenes/homeScreen/HomeScreen';
-import { ProfileScreen } from '../scenes/profileScreen/ProfileScreen';
-import colors from '../styles/colors';
 import { ScanNavigator } from './ScanNavigator';
 import { ScanButton } from './ScanButton';
+import { createStackNavigator } from '@react-navigation/stack';
+import { TransactionDetailsScreen } from '../scenes/transaction/TransactionDetailScreen';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-export const AppNavigator = () => {
+const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -21,7 +21,7 @@ export const AppNavigator = () => {
         tabBarLabelStyle: { fontSize: 12, paddingBottom: 10 },
       }}>
       <Tab.Screen
-        name="Home"
+        name="home"
         component={HomeNavigator}
         options={{
           headerShown: false,
@@ -31,7 +31,7 @@ export const AppNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Buy"
+        name="buy"
         component={BuyNavigator}
         options={{
           headerShown: false,
@@ -41,7 +41,7 @@ export const AppNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Scan"
+        name="scan"
         component={ScanNavigator}
         options={{
           headerShown: false,
@@ -52,7 +52,7 @@ export const AppNavigator = () => {
       />
 
       <Tab.Screen
-        name="Transactions"
+        name="transactions"
         component={TransactionsNavigator}
         options={{
           headerShown: false,
@@ -62,7 +62,7 @@ export const AppNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="profile"
         component={ProfileNavigator}
         options={{
           headerShown: false,
@@ -72,5 +72,35 @@ export const AppNavigator = () => {
         }}
       />
     </Tab.Navigator>
+  );
+};
+
+// scenes
+const StackRoutes = {
+  Home: Tabs,
+  TransactionDetailsScreen,
+  // ProfileScreen,
+  // BuyScreen,
+  // TransactionScreen,
+};
+
+export const AppNavigator = () => {
+  return (
+    <Stack.Navigator>
+      {Object.entries(StackRoutes).map(value => {
+        const [name, Screen] = value;
+        return (
+          <Stack.Screen
+            name={name as any}
+            key={name}
+            component={Screen as any}
+            options={{
+              headerShown: name !== 'Home',
+              headerTitle: () => null,
+            }}
+          />
+        );
+      })}
+    </Stack.Navigator>
   );
 };

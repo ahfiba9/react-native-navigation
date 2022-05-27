@@ -10,7 +10,7 @@ interface TransactionsRawData {
   transactions: TransactionsRawDataDetails[];
 }
 
-interface TransactionsRawDataDetails {
+export interface TransactionsRawDataDetails {
   id: string;
   notification_read: boolean;
 }
@@ -22,7 +22,7 @@ interface AppContextInterface {
   >;
 }
 
-const AppContext = React.createContext<AppContextInterface | null>(null);
+export const AppContext = React.createContext<AppContextInterface | null>(null);
 
 export default function App() {
   const [transactions, setTransactions] = useState<TransactionsRawData | null>(
@@ -32,6 +32,7 @@ export default function App() {
   const geTransactionsData = async () => {
     try {
       const { data } = await axios.get('http://localhost:3000/transactions');
+      console.log('data = ', data)
       setTransactions(data);
     } catch (e) {
       Alert.alert('Error', 'Something went wrong..', [

@@ -1,17 +1,31 @@
 import React from 'react';
-import { Text, StyleSheet, Platform, TextProps, TextStyle } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  Platform,
+  TextStyle,
+  TouchableOpacity,
+} from 'react-native';
 
 interface AppTextParam {
   children: React.ReactNode;
   style?: TextStyle;
   numberOfLines?: number;
+  onPress?: () => void;
 }
 
-export const AppText = ({ children, style, numberOfLines }: AppTextParam) => {
+export const AppText = ({
+  children,
+  style,
+  numberOfLines,
+  onPress,
+}: AppTextParam) => {
   return (
-    <Text numberOfLines={numberOfLines} style={[styles.text, style]}>
-      {children}
-    </Text>
+    <TouchableOpacity onPress={onPress} disabled={!onPress}>
+      <Text numberOfLines={numberOfLines} style={[styles.text, style]}>
+        {children}
+      </Text>
+    </TouchableOpacity>
   );
 };
 

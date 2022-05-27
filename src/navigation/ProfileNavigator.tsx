@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import colors from '../styles/colors';
-import { ProfileScreen } from '../scenes/profileScreen/ProfileScreen';
+import { ProfileScreen } from '../scenes/profile/ProfileScreen';
 
 const Stack = createStackNavigator();
 

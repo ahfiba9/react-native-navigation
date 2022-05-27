@@ -1,18 +1,22 @@
-import React, { useContext, useState } from 'react';
-import { StyleSheet, View, FlatList, Text } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import colors from '../../styles/colors';
 
 import Screen from '../../components/AppScreen';
+import AppText from '../../components/AppText';
 
-export const TransactionScreen = () => {
-  // const userContext = useContext(AuthContext);
-
+export const ProfileScreen = () => {
   return (
     <View style={styles.headerContainer}>
       <Screen style={styles.screen}>
-        <Text> Transaction screen </Text>
-        <Text> Go to notifications </Text>
+        <View
+          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <AppText>Profile screen</AppText>
+          <AppText style={{ color: colors.primary, paddingTop: 10 }}>
+            Go to notifications
+          </AppText>
+        </View>
       </Screen>
     </View>
   );
