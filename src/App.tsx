@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert } from 'react-native';
 
 import { AppNavigator } from './navigation/AppNavigator';
-import { navigationRef } from './navigation/rootNavigation';
-import axios from 'axios';
+import { transactionMockData } from '../mockApi/mockData';
 
 interface TransactionsRawData {
   transactions: TransactionsRawDataDetails[];
@@ -22,22 +21,24 @@ interface AppContextInterface {
   >;
 }
 
-export const AppContext = React.createContext<AppContextInterface | null>(null);
+export const AppContext = createContext<AppContextInterface | null>(null);
 
-export default function App() {
+export const App = () => {
   const [transactions, setTransactions] = useState<TransactionsRawData | null>(
     null,
   );
 
   const geTransactionsData = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3000/transactions');
-      console.log('data = ', data)
+      // assumed this is an api call
+      const data = transactionMockData;
       setTransactions(data);
     } catch (e) {
-      Alert.alert('Error', 'Something went wrong..', [
-        { text: 'OK', onPress: () => console.log('OK Pressed') },
-      ]);
+      Alert.alert(
+        'Error',
+        'Sorry, our server is not available at the moment.',
+        [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+      );
     }
   };
 
@@ -56,13 +57,6 @@ export default function App() {
       </NavigationContainer>
     </AppContext.Provider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({});

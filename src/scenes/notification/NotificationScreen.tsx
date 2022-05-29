@@ -29,6 +29,7 @@ export const NotificationScreen = () => {
 
     return (
       <AppText
+        testID={`transactionButton${id}`}
         style={{ color: colors.primary, paddingTop: 10 }}
         onPress={() => navigateToTransaction(id)}>
         Unread notification - Transaction ID {id}

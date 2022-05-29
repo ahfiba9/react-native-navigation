@@ -12,6 +12,7 @@ interface AppTextParam {
   style?: TextStyle;
   numberOfLines?: number;
   onPress?: () => void;
+  testID?: string;
 }
 
 export const AppText = ({
@@ -19,10 +20,14 @@ export const AppText = ({
   style,
   numberOfLines,
   onPress,
+  testID,
 }: AppTextParam) => {
   return (
     <TouchableOpacity onPress={onPress} disabled={!onPress}>
-      <Text numberOfLines={numberOfLines} style={[styles.text, style]}>
+      <Text
+        testID={testID}
+        numberOfLines={numberOfLines}
+        style={[styles.text, style]}>
         {children}
       </Text>
     </TouchableOpacity>

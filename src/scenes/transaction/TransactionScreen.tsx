@@ -25,6 +25,7 @@ export const TransactionScreen = () => {
   }) => {
     return (
       <AppText
+        testID={`transactionButton${id}`}
         style={{ color: colors.primary, paddingTop: 10 }}
         onPress={() => navigateToTransaction(id)}>
         {' '}
@@ -49,7 +50,6 @@ export const TransactionScreen = () => {
             keyExtractor={index => index.id}
             renderItem={renderTransactions}
           />
-          {/*</View>*/}
         </View>
       </Screen>
     </View>
